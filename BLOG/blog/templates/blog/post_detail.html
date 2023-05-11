@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}{{object.title}}{% endblock %}
+
+{% block extra-style %}
+  <style>
+    .post-body {
+      width : 80%%;
+      margin : auto;
+      font-family : "Lucida Grande", Vendana, Arial, sans-serif;
+      font-size : 16px
+    }
+  </style>
+{% endblock extra-style %}
+
+
+{% block content %}
+<div class="conatiner">
+  <h1> {{object.title}} </h1>
+  <p> {{object.pub_date}} </p>
+  <p> {{object.body}} </p>
+  <p>{{object.description|safe}}</p>
+  <br><br>
+</div>
+
+<div class="d-flex justify-content-center">
+  {% if object.get_next %}
+  <a href="{{ object.get_next.get_absolute_url }}" title="View next post">
+    <i class="fa-solid fa-circle-left m-3 fa-lg" style="color: gray;"></i>
+  </a>
+  {% else %}
+  <a><i class="fa-solid fa-circle-left m-3 fa-lg" style="color: gainsboro;"></i></a>
+  {% endif %}
+
+  {% if object.get_previous %}
+  <a href="{{ object.get_previous.get_absolute_url }}" title="View previous post">
+    <i class="fa-solid fa-circle-right m-3 fa-lg" style="color: gray;"></i>
+  </a>
+  {% else %}
+  <a><i class="fa-solid fa-circle-right m-3 fa-lg" style="color: gainsboro;"></i></a>
+  {% endif %}
+</div>
+
+<div class="text-center mt-2">
+  <a href="{% url 'blog:post_list' %}" class="btn border btn-sm">목록</a>
+</div>
+
+  <br>
+  <div>
+    <b>태그</b> <i class="fas fa-tag"></i>
+    {% load taggit_templatetags2_tags%}
+    {% get_tags_for_object object as "tags" %}
+    {% for tag in tags %}
+      <a href="{% url 'blog:tagged_object_list' tag.name %}"><span class="ms-3">{{tag.name}}</span></a>
+    {% endfor %}
+    &emsp;
+    <a href="{% url 'blog:tag_cloud' %}"><span class="btn text-black border btn-sm" >Tag Cloud</span></a>
+  </div>
+
+  <br>
+
+</div>
+
+<hr>
+
+<div style="width: 700px; margin:auto;">
+  <h4>댓글</h4>
+  {% if comments %}
+      <p><b>{{ comments|length }}개</b></p>
+      {% else %}
+      <p><b>0개</b></p>
+    {% endif %}
+    {% for message in messages %}
+    <div class="alert border">{{ message }}</div>
+    {% endfor %}
+  <div>
+    <ul>
+      {% for comment in comments %}
+        <li >
+          <div class="d-flex justify-content-between">
+            <p class="" style=""><b>{{comment.name}}</b></p>
+            
+            <form action="{% url 'blog:comments_delete' post.pk comment.pk  %}" method="POST">
+              {% csrf_token %}
+              {{ comment.create_dt|date:"Y/m/d" }}
+              <input class="form" style="width:100px;" placeholder="비밀번호" type="password" name="input_pwd">
+              <input class="btn border btn-sm" type="submit" value="삭제">
+            </form>
+            
+          </div>
+
+          <div>
+            {{comment.content|safe}}
+          </div>
+        </li>
+        
+        <hr>
+      {% endfor %}
+    </ul>
+
+      <form action="{% url 'blog:comments_create' post.pk %}" method="POST">
+        {% csrf_token %}
+        {{ comment_form }}
+        <div><input class="btn border float-end" type="submit" value="작성"></div>
+      </form>
+
+  </div>
+
+  <br>
+  <br>
+</div>
+
+{% endblock content %}
+
+{% block extra-script %}
+{% comment %} <div style="">
+  <div id="disqus_thread" style="width:65%; margin: auto;" >
+    <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://{{ disqus_short }}.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</div> {% endcomment %}
+{% endblock extra-script %}
