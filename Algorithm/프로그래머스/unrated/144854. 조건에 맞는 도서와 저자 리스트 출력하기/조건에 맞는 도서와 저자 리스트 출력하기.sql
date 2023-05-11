@@ -1,0 +1,5 @@
+SELECT B.BOOK_ID, A.AUTHOR_NAME, TO_CHAR(B.PUBLISHED_DATE,'YYYY-MM-DD') -- 4. 해당 필드 출력
+FROM BOOK B -- 1. B테이블로부터
+INNER JOIN AUTHOR A ON B.AUTHOR_ID = A.AUTHOR_ID -- 2. B테이블의 작가ID와 같은 A테이블의 작가ID를 관계로 A테이블 조인
+WHERE B.CATEGORY = '경제' -- 3. B테이블의 카테고리가 경제인
+ORDER BY B.PUBLISHED_DATE ASC;
