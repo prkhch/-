@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="later-view">
     <h1>Later</h1>
     <LaterVideoList/>
   </div>

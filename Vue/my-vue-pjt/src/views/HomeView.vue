@@ -20,6 +20,7 @@
 
 <style scoped>
 video {
+  height: 100vh;
   width: 100vw;
 }
 .intro-text-container {

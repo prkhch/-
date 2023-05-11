@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="search-view later-view detail-view .video-list-ul .video-list-li">
+  <div id="app">
     <AppNav/>
     <div class="page">
       <router-view/>
@@ -25,7 +25,7 @@ ul {
   list-style : none;
 }
 .page {
-  padding-top:3.5rem;
+  padding-top:3rem;
 }
 .search-view,
 .later-view,
@@ -41,5 +41,12 @@ ul {
 }
 .video-list-li {
   margin-bottom: 30px;
+}
+.search-view,
+.later-view,
+.detail-view,
+.loading-icon-container,
+.video-list-ul {
+  margin-top: 10px;
 }
 </style>

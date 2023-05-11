@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="search-view">
     <ArrowBack/>
     <h1>비디오 검색</h1>
     <SearchInput/>
