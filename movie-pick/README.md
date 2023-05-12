@@ -10,4 +10,4 @@
 # WatchList
 ## 저장한 영화 목록 출력 & 제거 & 초기화
 
-<img src="/src/assets/map.png">
+<img src="~@src/assets/map.png" />
