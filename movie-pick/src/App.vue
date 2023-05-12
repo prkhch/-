@@ -28,8 +28,10 @@ list-style: none;
 }
 
 .movie-view,
-.random-view
+.random-view,
+.watchlist-view,
+.home
  {
-  padding : 100px;
+  padding : 50px;
 }
 </style>

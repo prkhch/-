@@ -5,11 +5,11 @@
 
       <div class="col" v-for="movie in movies" :key="movie.id">
         <div class="card">
-          <img :src="getImageUrl(movie.poster_path)" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-center">{{ movie.title }}</h5>
-            <hr>
-            <p :class="[isLargeScreen ? 'large-text' : '']">{{ getLimitedOverview(movie.overview)}}</p>
+          <img :src="getImageUrl(movie.poster_path)" class="card-img-top border" alt="...">
+          <div class="card-body border">
+            <h5 class="text-center" style="font-weight:bold">{{ movie.title }}</h5>
+            <h6 class="text-center" style="font-style:italic">{{movie.release_date}}</h6>
+            <p>{{movie.overview}}</p>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@ export default {
     },
     fetchMovies() {
       const apiKey = '8b1a427d0c951e52a5869304bde7a649';
-      const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=ko-KR&page=1`
+      const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=ko-KR&page=1`
       axios.get(url)
         .then((response) => {
           this.movies = response.data.results;
@@ -48,62 +48,26 @@ export default {
           console.log(error);
         })
     },
-    getLimitedOverview(overview) {
-      const maxLength = 100;
-      if(overview.length > maxLength) {
-        return overview.substring(0, maxLength) + '...';
-      }
-      else {
-        return overview;
-      }
-    }
   },
-  computed: {
-    isLargeScreen() {
-      return window.innerWidth >= 1440; // 큰 화면인지 여부를 체크
-    }
-  }
 }
 </script>
 
 <style scoped>
-p {
+/* p {
   line-height:2em;
-}
+} */
 
 .card-img-top {
-  height: auto;
+  height: 500px;
 }
 
-.large-text {
-  font-size: 16px; /* 작은 화면에서의 폰트 크기 */
-  text-align: center;
+.card-body {
+  height: 200px;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-
-@media (min-width: 768px) {
-  .card-img-top {
-    height: 400px;
-  }
-  .card-body {
-  height: 300px;
-  }
-}
-@media (min-width: 1280px) {
-  .card-img-top {
-    height: 500px;
-  }
-  .card-body {
-  height: 450px;
-  }
-  .large-text {
-    font-size: 25px; /* 작은 화면에서의 폰트 크기 */
-  }
-}
-
-.cardgroup {
-  width: 100%;
-}
-
-
 
 </style>

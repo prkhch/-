@@ -1,15 +1,15 @@
 <template>
   <div class="random-view">
-
-    <button type="button" class="btn btn-dark" v-on:click="pickMovie">PICK</button>
     <div v-if="randomMovie">
+      <button type="button" class="btn btn-dark" v-on:click="pickMovie(); getRandomMovie();">PICK</button>
       <div class="card">
-        <img :src="getImageUrl(randomMovie.poster_path)" :alt="randomMovie.title" class="card-img-top"/>
-        <div class="card-body text-center">
+        <img :src="getImageUrl(randomMovie.poster_path)" :alt="randomMovie.title" class="card-img-top border"/>
+        <div class="card-body text-center border">
           <h2>{{ randomMovie.title }}</h2>
         </div>
       </div>
     </div>
+    <div v-else><h1>추천 영화가 없습니다.</h1></div>
 
     <button type="button" class="btn btn-dark" v-on:click="getRandomMovie"><i class="fa-sharp fa-solid fa-rotate-right" style="color: #ffffff;"></i></button>
 
@@ -27,7 +27,7 @@ export default {
       randomMovie: null
     };
   },
-  created() {
+  mounted() {
     this.fetchMovies()
       .then(()=> {
         this.getRandomMovie();
@@ -41,7 +41,7 @@ export default {
     },
     fetchMovies() {
       const apiKey = '8b1a427d0c951e52a5869304bde7a649';
-      const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=ko-KR&page=1`
+      const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=ko-KR&page=1`
       return axios.get(url)
         .then((response) => {
           this.movies = response.data.results;
@@ -52,8 +52,22 @@ export default {
     },
     getRandomMovie() {
       if(this.movies.length > 0) {
-        const randomIndex = Math.floor(Math.random() * this.movies.length);
-        this.randomMovie = this.movies[randomIndex];
+        // 모든 영화 리스트
+        const allMovies = this.movies; 
+
+        // 로컬 스토리지의 watchList 가져오기
+        const watchList = JSON.parse(localStorage.getItem('watchList')) || []; 
+
+         // watch리스트에 없는 영화 저장
+        const nonWatchedMovies = allMovies.filter(movie => !watchList.some(watchedMovie => watchedMovie.id === movie.id));
+
+        // nonWathedMovies(본 적없는영화. 즉, 중복제거)의 영화중 랜덤으로 뽑기
+        const randomMovie = nonWatchedMovies[Math.floor(Math.random() * nonWatchedMovies.length)];
+        console.log(allMovies);
+        console.log(watchList);
+        console.log(nonWatchedMovies)
+        console.log(randomMovie)
+        this.randomMovie = randomMovie;
       }
     },
     pickMovie() {
@@ -61,7 +75,7 @@ export default {
       const watchList = JSON.parse(localStorage.getItem('watchList')) || [];
       watchList.push(this.randomMovie);
       localStorage.setItem('watchList', JSON.stringify(watchList));
-    }
+    },
   }
 }
 </script>
@@ -82,12 +96,11 @@ export default {
 
 .card-img-top {
   height: 700px;
-  width: 500px;
-  border: 1px black solid;
+  width: 520px;
 }
 
-.card-body {
-  border: 1px black solid;
+.card {
+  width: 520px;
 }
 
 
