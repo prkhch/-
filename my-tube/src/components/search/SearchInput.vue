@@ -17,7 +17,6 @@ export default {
   methods: {
     getSearchData() {
       this.$store.dispatch("getVideos", this.userInput); // 검색어 보내기
-      this.userInput = "";
     },
   },
 }

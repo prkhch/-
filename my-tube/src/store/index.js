@@ -34,7 +34,7 @@ export default new Vuex.Store({
           part: "snippet",
           type: "video",
           q: word,
-          maxResults: 10,
+          maxResults: 48,
         },
       })
       .then((response)=> { // REST API를 통해 가져온 데이터 파싱

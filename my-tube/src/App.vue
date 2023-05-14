@@ -37,10 +37,12 @@ ul {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .video-list-li {
   margin-bottom: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .search-view,
 .later-view,
