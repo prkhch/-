@@ -35,7 +35,6 @@
 - 베이스 레이아웃
 - 홈
 <img src="./History/IDHP_230319.png">
-<img src="./History/responsive web.png" width="400" height="500">
 
 ---
 
