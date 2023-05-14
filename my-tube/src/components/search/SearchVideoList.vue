@@ -19,7 +19,7 @@ export default {
   computed: {
     videoList() {
       return this.$store.state.videoList;
-    }
-  }
+    },
+  },
 }
 </script>
