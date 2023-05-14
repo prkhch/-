@@ -20,8 +20,8 @@
 
 <style scoped>
 video {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 .intro-text-container {
   position: absolute;
