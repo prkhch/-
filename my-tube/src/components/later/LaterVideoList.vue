@@ -1,5 +1,22 @@
 <template>
   <div>
-    <h1>LaterVideo</h1>
+    <ul class="video-list-ul">
+      <li class="video-list-li" v-for="video in laterVideoList" v-bind:key="video.videoId">
+        <EachVideo v-bind:video="video" />
+      </li>
+    </ul>
   </div>
 </template>
+
+<script>
+import EachVideo from "../common/EachVideo.vue";
+
+export default {
+  components: {
+    EachVideo,
+  },
+  props: {
+    laterVideoList: Array,
+  },
+};
+</script>
