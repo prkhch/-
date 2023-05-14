@@ -24,7 +24,6 @@ export default new Vuex.Store({
       state.loading = flag;
     },
   },
-
   actions: {
     getVideos(context, word) { // dispatch를 통해 실행될 것
       context.dispatch("changeLoading", true);

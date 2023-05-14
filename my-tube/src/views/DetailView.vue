@@ -10,7 +10,8 @@
               autofullscreen>
       </iframe>
       <p class="description">{{description}}</p>
-      <button type="button" class="btn btn-primary" v-on:click="registerLaterVideo">동영상 저장</button>
+      <button v-if="isLaterVideo" type="button" class="btn btn-danger" v-on:click="unregisterLaterVideo">저장 취소</button>
+      <button v-else type="button" class="btn btn-primary" v-on:click="registerLaterVideo">동영상 저장</button>
     </div>
   </div>
 </template>
@@ -29,6 +30,7 @@ export default {
   data() {
     return {
       video : {},
+      isLaterVideo : null,
     }
   },
   methods: {
@@ -41,7 +43,28 @@ export default {
         laterVideoList.arr.push(this.video.videoId);
         localStorage.setItem("laterVideoList", JSON.stringify(laterVideoList));
       }
+      this.isLaterVideo = true;
     },
+    unregisterLaterVideo() {
+      const listString = localStorage.getItem("laterVideoList");
+      const laterVideoList = JSON.parse(listString);
+      const idx = laterVideoList.arr.indexOf(this.video.videoId);
+      laterVideoList.arr.splice(idx, 1);
+      localStorage.setItem("laterVideoList", JSON.stringify(laterVideoList));
+      this.isLaterVideo = false;
+      },
+    checkVideoInStorage() {
+      const listString = localStorage.getItem("laterVideoList");
+      if (listString === null) {
+        return false;
+      }
+      const laterVideoList = JSON.parse(listString);
+      if (laterVideoList.arr.includes(this.video.videoId)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   },
   computed : {
    isLoading() {
@@ -78,6 +101,7 @@ export default {
           description : item.snippet.description,
           publishedAt : dayjs(item.snippet.publishedAt).format("YYYY-MM-DD"),
         };
+        this.isLaterVideo = this.checkVideoInStorage();
         this.$store.dispatch("changeLoading", false);
       })
       .catch((error) => {
