@@ -10,6 +10,7 @@
               autofullscreen>
       </iframe>
       <p class="description">{{description}}</p>
+      <button type="button" class="btn btn-primary" v-on:click="registerLaterVideo">동영상 저장</button>
     </div>
   </div>
 </template>
@@ -30,6 +31,18 @@ export default {
       video : {},
     }
   },
+  methods: {
+    registerLaterVideo() {
+      const listString = localStorage.getItem("laterVideoList");
+      if (listString === null) {
+        localStorage.setItem( "laterVideoList", `{"arr": ["${this.video.videoId}"]}`);
+      } else {
+        const laterVideoList = JSON.parse(listString);
+        laterVideoList.arr.push(this.video.videoId);
+        localStorage.setItem("laterVideoList", JSON.stringify(laterVideoList));
+      }
+    },
+  },
   computed : {
    isLoading() {
     return this.$store.state.loading;
@@ -38,7 +51,7 @@ export default {
     return this.video.title;
    },
    videoSrc() {
-    return `https://www.youtube.com/embed/${this.video.videoId}?autoplay=1`;
+    return `https://www.youtube.com/embed/${this.video.videoId}?autoplay=0`;
    },
    description() {
     return this.video.description;
