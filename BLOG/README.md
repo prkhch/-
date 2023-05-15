@@ -2,10 +2,18 @@
 <img src="https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=HTML5&logoColor=white"/><img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"/><img src="https://img.shields.io/badge/django-092E20?style=flat-square&logo=django&logoColor=white"/><img src="https://img.shields.io/badge/python-3776AB?style=flat-square&logo=python&logoColor=white"/>
 
 ## v2.0
-- 레이아웃 변경
-- Bookmark 제거
-- DISQUS제거 (댓글 직접 구현)
-- ckeditor활용하여 코드 블럭 활성화
+
+# Board
+
+* 게시물 저장, 수정, 삭제
+* 게시물 태그, 검색
+* 게시물 댓글 저장 및 비밀번호를 활용한 삭제
+* ckeditor활용하여 코드 블럭 활성화
+
+# Archive
+
+* 년, 월, 일별로 작성된 게시물 확인
+
 <img src="./History/day1.6.png">
 
 ---
