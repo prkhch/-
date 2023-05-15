@@ -1,6 +1,7 @@
 <template>
   <div>
-    <router-link :to="{name:arrowBackRouteName}">
+    <!--  동적으로 라우트 이름을 지정 -->
+    <router-link :to="{name:arrowBackRouteName}"> 
       <span class="arrow-back material-symbols-outlined">arrow_back</span>
     </router-link>
   </div>

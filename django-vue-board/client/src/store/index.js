@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    URL: "http://localhost:8000",
+    URL: "http://localhost:8000", // 백엔드
     key: "",
     username : "",
   },
@@ -23,7 +23,7 @@ export default new Vuex.Store({
   actions: {
     login(context, userInput) { //로그인
       return axios
-        .post(`${context.state.URL}/accounts/login`, userInput) // post 메서드 요청(+ 입력)
+        .post(`${context.state.URL}/accounts/login/`, userInput) // post 메서드 요청(+ 입력)
         .then((response) => {
           if(response.status===200) { // 성공
             context.commit("CHANGE_KEY", response.data.key); // mutations을 호출하여 상태변경
@@ -39,7 +39,7 @@ export default new Vuex.Store({
     logout(context) { // 로그아웃
       return axios
         .post( // post 메서드 요청(+ 토큰)
-          `${context.state.URL}/accounts/logout`,
+          `${context.state.URL}/accounts/logout/`,
           `Token ${context.state.key}`
         )
         .then((response) => {
