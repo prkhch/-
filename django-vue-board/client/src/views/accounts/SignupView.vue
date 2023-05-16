@@ -50,7 +50,7 @@ export default {
           password2: this.password2,
         })
         .then((response) => {
-          if(response.status === 204) {
+          if(response.status === 204) { // 204: 요청 성공 + 서버 응답에는 데이터가 없음.
             alert("회원가입 성공")
             this.$router.push({name : "home"});
           }

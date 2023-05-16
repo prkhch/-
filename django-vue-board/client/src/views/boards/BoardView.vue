@@ -39,8 +39,8 @@ export default {
         },
       })
       .then((response) => { // 성공적인 응답
-        if(response.status === 200) { // 그 상태가 200일때만 (201,204 등 다양한 코드가 존재)
-          this.articles = response.data; // articles의 data를 articles에 넣기
+        if(response.status === 200) { // 그 상태가 200일때만 
+          this.articles = response.data; // 게시판 데이터 가져오기
           this.isLoading = false; // 로딩 상태 해제
         }
       })

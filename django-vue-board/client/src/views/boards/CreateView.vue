@@ -50,7 +50,7 @@ export default {
             {headers : {Authorization: `Token ${this.$store.state.key}`}}
           )
           .then((response) => {
-            if(response.status === 201) {
+            if(response.status === 201) { // 201: 요청 성공 + 새로운 리소스 생성
               alert("글 작성 성공")
               this.$router.push({name:"board"})
             }
