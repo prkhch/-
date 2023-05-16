@@ -13,7 +13,10 @@
       <label for="article-title">글 제목</label>
     </div>
     <div class="form-floating">
-      <textarea class-="form-control" placeholder="Leave a comment here" id="article-description" v-model="description"></textarea>
+      <textarea class-="form-control" 
+      placeholder="Leave a comment here" 
+      id="article-description" 
+      v-model="description"></textarea>
     </div>
     <button type="button" class="btn btn-primary" @click="createArticle">업로드</button>
   </div>
