@@ -1,17 +1,23 @@
 // 원래 브라우저에서 모듈을 불러오는 기능은 없다. Node.js에 지원하..
 import './App.css';
 // import { Component } from 'react';
-import MyComponent from './MyComponents';
+// import MyComponent from './MyComponents';
+// import Counter from './Counter';
+import Say from './Say';
 
 const App = () => {
-  return (
-    <>
-      <MyComponent name="React" favoriteNumber={1}>
-        App에서 왔어요.
-      </MyComponent>
-    </>
-  );
+  return <Say />;
 };
+
+// const App = () => {
+//   return (
+//     <>
+//       <MyComponent name="React" favoriteNumber={1}>
+//         App에서 왔어요.
+//       </MyComponent>
+//     </>
+//   );
+// };
 
 // class App extends Component {
 //   // 클래스형 컴포넌트
