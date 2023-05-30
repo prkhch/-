@@ -5,6 +5,26 @@ class EventPractice extends Component {
     message: "",
   };
 
+  constructor(props) {
+    // 함수 바인딩 작업
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      message: e.target.value, // 2. state의 message값 변경
+    });
+  }
+
+  handleClick() {
+    alert(this.state.message);
+    this.setState({
+      message: "",
+    });
+  }
+
   render() {
     return (
       <div>
@@ -13,20 +33,10 @@ class EventPractice extends Component {
           type="text"
           name="message"
           placeholder="플레이스 홀더"
-          value={this.state.message}
-          onChange={(e) => {
-            this.setState({ message: e.target.value });
-          }}
+          value={this.state.message} // 3. 그 message값을 value로
+          onChange={this.handleChange} // 1.this.handleChange
         />
-
-        <button
-          onClick={() => {
-            alert(this.state.message);
-            this.setState({ message: "" });
-          }}
-        >
-          확인
-        </button>
+        <button onClick={this.handleClick}>확인</button>
       </div>
     );
   }
