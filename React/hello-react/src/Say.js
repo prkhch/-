@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 const Say = () => {
   const [message, setMessage] = useState('');
-  const onClickEnter = () => setMessage('안녕하세요!');
+  const onClickEnter = () => setMessage('안녕하세요!'); // 함수 형태의 객체
   const onClickLeave = () => setMessage('안녕히 가세요!');
 
-  const [color, setColor] = useState('');
+  const [color, setColor] = useState('black');
 
   return (
     <div>
