@@ -7,9 +7,14 @@ const IterationSample = () => {
   //     <li>바람</li>
   //   </ul>
   // );
+
   // const names = ["눈사람", "얼음", "눈", "바람"]; // 키가 없다.
   // const nameList = names.map((name) => <li>{name}</li>);
   // return <ul>{nameList}</ul>;
+
+  const names = ["눈사람", "얼음", "눈", "바람"];
+  const nameList = names.map((name, index) => <li key={index}>{name}</li>);
+  return <ul>{nameList}</ul>;
 };
 
 export default IterationSample;
