@@ -1,7 +1,3 @@
-<img src="https://img.shields.io/badge/typescript-000000?style=for-the-badge&logo=typescript&logoColor=white"><img src="https://img.shields.io/badge/react-000000?style=for-the-badge&logo=react&logoColor=white">
-
----
-
 ##### Algorithm
 <img src="https://img.shields.io/badge/c++-00599C?style=for-the-badge&logo=c++&logoColor=white"><img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 
@@ -11,4 +7,6 @@
 ##### BE
 <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
 
+---
 
+<img src="https://img.shields.io/badge/typescript-000000?style=for-the-badge&logo=typescript&logoColor=white"><img src="https://img.shields.io/badge/react-000000?style=for-the-badge&logo=react&logoColor=white">
