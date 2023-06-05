@@ -13,8 +13,8 @@ const Info = () => {
   // });
 
   useEffect(() => {
-    console.log("마운트 시 실행");
-  });
+    console.log(name);
+  }, [name]);
 
   const onChangeName = (e) => {
     setName(e.target.value);
