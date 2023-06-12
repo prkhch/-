@@ -1,4 +1,5 @@
 import "./App.css";
+import Average from "./Average";
 import Counter from "./Counter";
 import Info from "./Info";
 import { useState } from "react";
@@ -17,6 +18,8 @@ const App = () => {
       {visible && <Info />}
       <hr />
       <Counter />
+      <hr />
+      <Average />
     </div>
   );
 };
