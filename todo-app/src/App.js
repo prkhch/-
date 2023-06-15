@@ -37,6 +37,10 @@ const App = () => {
     [todos],
   );
 
+  // const onRemove = useCallback(
+  //
+  // )
+
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert} />
