@@ -11,6 +11,7 @@ const Home = () => {
         <li>
           <Link to="/about">about</Link>
         </li>
+        <hr />
         <li>
           <Link to="/profiles/obj1">username:obj1</Link>
         </li>
@@ -19,6 +20,10 @@ const Home = () => {
         </li>
         <li>
           <Link to="/profiles/void">존재하지 않는 사용자</Link>
+        </li>
+        <hr />
+        <li>
+          <Link to="/articles">게시글 목록</Link>
         </li>
       </ul>
     </div>
