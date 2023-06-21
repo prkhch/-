@@ -1,0 +1,53 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table user {
+  id INT [primary key]
+  name VARCHAR
+  password VARCHAR
+  email EMAIL
+  profile IMAGE
+  description VARCHAR
+}
+
+Table color {
+  id INT [primary key]
+  hex VARCHAR
+  RGB VARCHAR
+}
+
+Table like {
+  id INT [primary key]
+  user_id INT
+  color_id INT
+}
+
+
+Table comment {
+  id INT [primary key]
+  user_id INT
+  color_id INT
+  content VARCHAR
+  created_at DATETIME
+}
+
+Table bookmark {
+  id INT [primary key]
+  user_id INT
+  color_id INT
+}
+
+Table follow {
+  id INT [primary key]
+  follower_id INT
+  following_id INT
+}
+
+Ref: like.color_id > color.id // many-to-one
+Ref: like.user_id > user.id // many-to-one
+Ref: comment.color_id > color.id // many-to-one
+Ref: comment.user_id > user.id // many-to-one
+Ref: bookmark.color_id > color.id // many-to-one
+Ref: bookmark.user_id > user.id // many-to-one
+Ref: follow.follower_id > user.id //
+
