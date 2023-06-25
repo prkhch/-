@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, register } from '../../modules/auth';
 import AuthForm from '../../components/auth/AuthForm';
@@ -6,6 +6,7 @@ import { check } from '../../modules/user';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
     form: auth.register,
@@ -15,6 +16,7 @@ const RegisterForm = () => {
   }));
   const navigate = useNavigate();
 
+  // 인풋 변경 이벤트 핸들러
   const onChange = (e) => {
     const { value, name } = e.target;
     dispatch(
@@ -26,13 +28,24 @@ const RegisterForm = () => {
     );
   };
 
+  // 폼 등록 이벤트 핸들러
   const onSubmit = (e) => {
     e.preventDefault();
     const { username, password, passwordConfirm } = form;
-    if (password !== passwordConfirm) {
+    // 하나라도 비어있다면
+    if ([username, password, passwordConfirm].includes('')) {
+      setError('Please fill in all fields.');
       return;
     }
-
+    // 비밀번호가 일치하지 않는다면
+    if (password !== passwordConfirm) {
+      setError('Passwords do not match.');
+      dispatch(changeField({ form: 'register', key: 'password', value: '' }));
+      dispatch(
+        changeField({ form: 'register', key: 'passwordConfirm', value: '' }),
+      );
+      return;
+    }
     dispatch(register({ username, password }));
   };
 
@@ -41,10 +54,16 @@ const RegisterForm = () => {
     dispatch(initializeForm('register'));
   }, [dispatch]);
 
+  // 회원가입 성공 / 실패 처리
   useEffect(() => {
     if (authError) {
-      console.log('오류발생');
-      console.log(authError);
+      // 계정명이 이미 존재할 때
+      if (authError.response.status === 409) {
+        setError('Username already exists.');
+        return;
+      }
+      // 기타 이유
+      setError('Failed.');
       return;
     }
 
@@ -59,6 +78,11 @@ const RegisterForm = () => {
   useEffect(() => {
     if (user) {
       navigate('/'); // 홈 화면으로 이동
+      try {
+        localStorage.setItem('user', JSON.stringify(user));
+      } catch (e) {
+        console.log('localStorage is not working');
+      }
     }
   }, [navigate, user]);
 
@@ -68,6 +92,7 @@ const RegisterForm = () => {
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
+      error={error}
     />
   );
 };

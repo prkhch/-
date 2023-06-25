@@ -43,6 +43,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
             value={form.passwordConfirm}
           />
         )}
+        {error && <div className="ErrorMessage">{error}</div>}
         {type === 'login' ? (
           <Button className="cyan fullWidth">Continue</Button>
         ) : (
