@@ -7,7 +7,6 @@
   color: white;
   outline: none;
   cursor: pointer;
-  margin-top: 1rem;
 
   background: #495057;
   &:hover {
@@ -26,5 +25,9 @@
     &:hover {
       background: #22b8cf;
     }
+  }
+
+  &.mt {
+    margin-top: 1rem;
   }
 }

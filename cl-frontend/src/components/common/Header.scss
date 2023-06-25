@@ -1,0 +1,32 @@
+.HeaderBlock {
+  position: fixed;
+  width: 100%;
+  background: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.Wrapper {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  .logo {
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+  .right {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.Spacer {
+  height: 2rem;
+}
+
+.UserInfo {
+  font-weight: 800;
+  margin-right: 1rem;
+}

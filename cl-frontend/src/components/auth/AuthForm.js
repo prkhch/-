@@ -45,9 +45,9 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
         )}
         {error && <div className="ErrorMessage">{error}</div>}
         {type === 'login' ? (
-          <Button className="cyan fullWidth">Continue</Button>
+          <Button className="cyan fullWidth mt">Continue</Button>
         ) : (
-          <Button className="cyan fullWidth">Create an account</Button>
+          <Button className="cyan fullWidth mt">Create an account</Button>
         )}
       </form>
       <div className="Footer">
