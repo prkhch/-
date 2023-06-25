@@ -10,15 +10,18 @@ const textMap = {
 
 const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
   const text = textMap[type];
+  // console.log('form : ', form);
   return (
     <div className="AuthFormBlock">
       <h3>{text}</h3>
-      <form>
+      <form onSubmit={onSubmit}>
         <input
           className="StyledInput"
           autoComplete="username"
           name="username"
           placeholder="Username"
+          onChange={onChange}
+          value={form.username}
         />
         <input
           className="StyledInput"
@@ -26,14 +29,18 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
           name="password"
           placeholder="Password"
           type="password"
+          onChange={onChange}
+          value={form.password}
         />
         {type === 'register' && (
           <input
             className="StyledInput"
             autoComplete="new-password"
-            name="password"
+            name="passwordConfirm"
             placeholder="Confirm Password"
             type="password"
+            onChange={onChange}
+            value={form.passwordConfirm}
           />
         )}
         {type === 'login' ? (
