@@ -1,4 +1,4 @@
-import HeaderContainer from '../components/common/HeaderContainer';
+import HeaderContainer from '../containers/common/HeaderContainer';
 
 const HomePage = () => {
   return (
