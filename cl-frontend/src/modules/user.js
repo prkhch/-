@@ -12,10 +12,21 @@ const [CHECK, CHECK_SUCCESS, CHECK_FAILURE] =
 
 export const tempSetUser = createAction(TEMP_SET_USER, (user) => user);
 export const check = createAction(CHECK);
+// export const logout = createAction(LOGOUT);
 
 const checkSaga = createRequestSaga(CHECK, authAPI.check);
+
+function checkFailureSaga() {
+  try {
+    localStorage.removeItem('user'); // localStorage 에서 user 제거하고
+  } catch (e) {
+    console.log('localStorage is not working');
+  }
+}
+
 export function* userSaga() {
   yield takeLatest(CHECK, checkSaga);
+  yield takeLatest(CHECK_FAILURE, checkFailureSaga);
 }
 
 const initialState = {
