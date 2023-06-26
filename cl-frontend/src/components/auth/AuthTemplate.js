@@ -7,7 +7,7 @@ const AuthTemplate = ({ children }) => {
     <div className="auth-template">
       <div className="white-box">
         <div className="logo-area">
-          <Link to="/">ColorLector</Link>
+          <Link to="/">React</Link>
         </div>
         {children}
       </div>
