@@ -6,6 +6,4 @@
 - react-router-dom (+Navlink)
 - usePromise (Custom Hook)
 
-
-
 <img src="preview.png" />
