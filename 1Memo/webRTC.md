@@ -1,13 +1,9 @@
-표정인식
-https://github.com/justadudewhohacks/face-api.js#face-api.js-for-the-browser 
+`socket.off()` 메서드는 이벤트 리스너를 제거하는 역할을 합니다. 이는 해당 이벤트에 대한 리스너를 해제하는 것으로, 소켓 연결을 끊는 동작은 수행하지 않습니다.
 
-눈깜빡임
-https://github.com/mirrory-dev/eyeblink 
+위의 코드에서 `socket.off("room:join", handleJoinRoom)`는 "room:join" 이벤트에 등록된 `handleJoinRoom` 함수를 제거하는 역할을 합니다. 이는 해당 이벤트가 발생할 때 `handleJoinRoom` 함수가 더 이상 호출되지 않도록 설정하는 것입니다. 이는 리스너를 해제하는 것이지 소켓 연결을 끊는 것은 아닙니다.
 
-얼굴필터
-https://github.com/samarthgulati/ar-face-filters 
+따라서 `socket.off()` 호출로 인해 소켓 연결이 끊기는 것은 아닙니다. 소켓 연결을 명시적으로 해제하려면 `socket.disconnect()` 또는 `socket.close()`와 같은 메서드를 사용해야 합니다.
 
-오픈소스 메신저 (로켓챗)
-[Rocket.Chat: Communications Platform You Can Fully Trust](https://www.rocket.chat/) 
+`socket.off()`를 호출하여 이벤트 리스너를 해제하는 것은 메모리 누수를 방지하고, 이벤트 처리가 더 이상 필요하지 않은 경우 해당 이벤트를 처리하지 않도록 설정하는 것입니다.
 
 
