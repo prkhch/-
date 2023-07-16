@@ -30,7 +30,7 @@ const LobbyScreen = () => {
     return () => {
       socket.off("room:join", handleJoinRoom);
     };
-  });
+  }, [socket, handleJoinRoom]);
 
   return (
     <div>

@@ -14,15 +14,20 @@ class PeerService {
     }
   }
 
-  // async getAnswer(offer) {
-  //   if(this.peer) {
-  //     await this.peer.setRemoteDescription(offer)
-  //     const ans = aswait this.peer.createAnswer()
-  //     await this.peer.setLocalDescription
-  //   }
-  // }
-  // 45분
-  // https://www.youtube.com/watch?v=ZDiQWv-hjtw
+  async getAnswer(offer) {
+    if (this.peer) {
+      await this.peer.setRemoteDescription(offer);
+      const ans = await this.peer.createAnswer();
+      await this.peer.setLocalDescription(new RTCSessionDescription(ans));
+      return ans;
+    }
+  }
+
+  async setLocalDescription(ans) {
+    if (this.peer) {
+      await this.peer.setRemoteDescription(new RTCSessionDescription(ans));
+    }
+  }
 
   async getOffer() {
     if (this.peer) {
