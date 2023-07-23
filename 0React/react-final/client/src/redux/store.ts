@@ -1,8 +1,16 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import authReducer from './auth';
+import userReducer from './user';
 
 export const store = configureStore({
   reducer: {
+    auth: authReducer,
+    user: userReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type AppDispatch = typeof store.dispatch;

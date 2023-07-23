@@ -1,12 +1,13 @@
-import NavBar from "../components/common/NavBar";
+import { SGlobal, SPageLayout } from "components/common/style";
+import NavBar from "components/common/NavBar";
 
 const WritePage = () => {
   return (
-    <div>
-      <NavBar/>
-      글쓰기 페이지
-    </div>
-    )
+    <SPageLayout>
+      <NavBar />
+      <SGlobal>게시판 페이지</SGlobal>
+    </SPageLayout>
+  );
 };
 
 export default WritePage;

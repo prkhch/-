@@ -1,12 +1,17 @@
-import NavBar from "../components/common/NavBar";
+import { SGlobal, SPageLayout } from "components/common/style";
+import NavBar from "components/common/NavBar";
+import RegisterForm from "containers/auth/RegisterForm";
 
 const RegisterPage = () => {
   return (
-    <div>
-      <NavBar/>
-      회원가입 페이지
-    </div>
-    )
+    <SPageLayout>
+      <NavBar />
+
+      <SGlobal>
+        <RegisterForm />
+      </SGlobal>
+    </SPageLayout>
+  );
 };
 
 export default RegisterPage;

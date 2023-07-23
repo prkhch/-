@@ -1,19 +1,16 @@
 import { SGlobal, SPageLayout } from "components/common/style";
 import NavBar from "components/common/NavBar";
-import LoginForm from "containers/auth/LoginForm";
+import Button from "components/common/Button";
 
-const LoginPage = () => {
+const PostListPage = () => {
   return (
     <div>
       <SPageLayout>
         <NavBar />
-
-        <SGlobal>
-          <LoginForm />
-        </SGlobal>
+        <SGlobal>마이 페이지</SGlobal>
       </SPageLayout>
     </div>
   );
 };
 
-export default LoginPage;
+export default PostListPage;
