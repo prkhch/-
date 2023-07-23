@@ -9,12 +9,14 @@ import AuthForm from "components/auth/AuthForm";
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
-    form: auth.login,
-    auth: auth.auth,
-    authError: auth.authError,
-    user: user.user,
-  }));
+  const { form, auth, authError, user } = useSelector(
+    ({ authReducer, userReducer }) => ({
+      form: authReducer.login,
+      auth: authReducer.auth,
+      authError: authReducer.authError,
+      user: userReducer.user,
+    }),
+  );
 
   const [error, setError] = useState<string | null>(null);
 

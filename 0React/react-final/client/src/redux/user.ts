@@ -14,36 +14,31 @@ const initialState: UserState = {
 export const tempSetUser = createAsyncThunk('user/tempSetUser', async (user: any) => {
   return user;
 });
+
 export const check = createAsyncThunk('user/check', authAPI.check);
 
-
-export const logout = createAsyncThunk(
-  "user/logout",
-  async () => {
-    try {
-      await authAPI.logout();
-      localStorage.removeItem('user');
-    } catch (err : any) {
-      console.log(err)
-    }
+export const logout = createAsyncThunk('user/logout', async () => {
+  try {
+    await authAPI.logout();
+    localStorage.removeItem('user');
+  } catch (e) {
+    console.log(e);
   }
-);
+});
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(tempSetUser.fulfilled, (state, { payload: user }) => {
-      state.user = user;
+    builder.addCase(tempSetUser.fulfilled, (state, action) => {
+      state.user = action.payload;
     });
-    builder.addCase(check.fulfilled, (state, { payload: user }) => {
-      state.user = user;
-      state.checkError = null;
+    builder.addCase(check.fulfilled, (state, action) => {
+      state.user = action.payload;
     });
-    builder.addCase(check.rejected, (state, { payload: error }) => {
+    builder.addCase(check.rejected, (state, action) => {
       state.user = null;
-      state.checkError = error as Error;
     });
     builder.addCase(logout.fulfilled, (state) => {
       state.user = null;

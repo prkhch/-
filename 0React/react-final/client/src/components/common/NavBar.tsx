@@ -7,7 +7,7 @@ import { RootState, AppDispatch } from "redux/store";
 import { logout } from "redux/user";
 
 const NavBar = () => {
-  const { user } = useSelector(({ user }) => ({ user: user.user }));
+  const user = useSelector((state: RootState) => state.userReducer.user);
   const dispatch = useDispatch<AppDispatch>();
   const onLogout = () => {
     dispatch(logout());
@@ -24,7 +24,7 @@ const NavBar = () => {
 
       {user ? (
         <>
-          <Button>{user}</Button>
+          <Button>{user.data.username}</Button>
           <Button onClick={onLogout}>로그아웃</Button>
         </>
       ) : (

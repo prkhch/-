@@ -4,8 +4,8 @@ import userReducer from './user';
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
-    user: userReducer,
+    authReducer: authReducer,
+    userReducer: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

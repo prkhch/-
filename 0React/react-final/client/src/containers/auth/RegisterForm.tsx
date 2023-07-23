@@ -9,12 +9,14 @@ import AuthForm from "components/auth/AuthForm";
 const RegisterForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
-    form: auth.register,
-    auth: auth.auth,
-    authError: auth.authError,
-    user: user.user,
-  }));
+  const { form, auth, authError, user } = useSelector(
+    ({ authReducer, userReducer }) => ({
+      form: authReducer.register,
+      auth: authReducer.auth,
+      authError: authReducer.authError,
+      user: userReducer.user,
+    }),
+  );
   const [error, setError] = useState<string | null>(null);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +54,6 @@ const RegisterForm = () => {
     dispatch(initializeRegister());
   }, [dispatch]);
 
-  console.log(authError);
   useEffect(() => {
     if (authError) {
       if (authError === 409) {
