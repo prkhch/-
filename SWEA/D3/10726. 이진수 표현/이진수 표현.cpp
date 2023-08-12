@@ -1,25 +1,24 @@
 #include <iostream>
 #include <string>
-#include <bitset>
+
 using namespace std;
 
-// m의 이진수를 직접 구하지 않고, '&'연산을 통해 조건 확인 가능
-
 int main() {
-
-	int tc;
-	cin >> tc;
-
-	for (int i = 1; i <= tc; i++) {
+	int t;
+	cin >> t;
+	for (int t_case = 1; t_case <= t; t_case++) {
 		int n, m;
-		cin >> n >> m;
+		cin >> n;
+		cin >> m;
 
-		if ( (m & ((1 << n) - 1)) == ((1 << n) - 1) ) {
-			cout << '#' << i << ' ' << "ON" << "\n";
+		int mask;
+		mask = (1 << n) - 1;
+
+		if (mask == (m & mask)) {
+			cout << "#" << t_case << " ON" << "\n";
 		}
 		else {
-			cout << '#' << i << ' ' << "OFF" << "\n";
+			cout << "#" << t_case << " OFF" << "\n";
 		}
 	}
-
 }
