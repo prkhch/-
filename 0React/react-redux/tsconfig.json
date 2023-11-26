@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "target": "es6",
-    "module": "esnext",
-    "jsx": "react",
-    "strict": true,
-    // 기타 설정...
-  }
-}

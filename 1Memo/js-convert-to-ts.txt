@@ -1,1 +1,0 @@
-https://stackoverflow.com/questions/38386113/converting-javascript-to-typescript
