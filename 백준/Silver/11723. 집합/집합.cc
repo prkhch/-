@@ -12,28 +12,31 @@ int main() {
 	int M;
 	cin >> M;
 
+	int idxed = 0;
+	int idx;
+	string cmd;
+
+
 	for (int i = 0; i < M; i++) {
-		string cmd;
 		cin >> cmd;
 
-		int num;
 		if (cmd != "all" && cmd != "empty") {
-			cin >> num;
+			cin >> idx;
 		}
 
 		// add
 		if (cmd == "add") {
-			arr[num] = 1;
+			idxed |= (1 << idx);
 		}
 
 		// remove
 		else if (cmd == "remove") {
-			arr[num] = 0;
+			idxed &= ~(1 << idx);
 		}
 
  		// check
 		else if (cmd == "check") {
-			if (arr[num] == 1) {
+			if (idxed & (1 << idx) ) {
 				cout << 1 << "\n";
 			}
 			else {
@@ -43,26 +46,17 @@ int main() {
 
 		// toggle
 		else if (cmd == "toggle") {
-			if (arr[num] == 1) {
-				arr[num] = 0;
-			}
-			else {
-				arr[num] = 1;
-			}
+			idxed ^= (1 << idx);
 		}
 
 		// all
 		else if (cmd == "all") {
-			for (int i = 1; i <= 20; i++) {
-				arr[i] = 1;
-			}
+			idxed = (1 << 21) - 1;
 		}
 
 		// empty
 		else if (cmd == "empty") {
-			for (int i = 1; i <= 20; i++) {
-				arr[i] = 0;
-			}
+			idxed = 0;
 		}
 
 	}
