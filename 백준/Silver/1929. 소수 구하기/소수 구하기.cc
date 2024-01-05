@@ -1,31 +1,29 @@
 #include <iostream>
 #include <cmath>
+
 using namespace std;
 
-int arr[1000001];
-int m, n;
-
-void eratosthenes() {
-	for (int i = 2; i <= sqrt(n)+1; i++) {
-		for (int j = i+i; j <= n; j += i) {
-			arr[j] = 0;
-		}
-	}
-}
+int decimal[1000001];
 
 int main() {
-	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	cin >> m >> n;
-	
-	for (int i = 2; i <= n; i++) {
-		arr[i] = i;
-	}
-	
-	eratosthenes();
 
-	for (int i = m; i <= n; i++) {
-		if (arr[i] != 0) {
-			cout << arr[i] << "\n";
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+
+	int M; int N;
+	cin >> M >> N;
+
+	decimal[1] = 1;
+	for (int i = 2; i <= sqrt(N); i++) {
+		if (decimal[i] == 1) continue;
+		for (int j = i * 2; j <= N; j += i) {
+			decimal[j] = 1;
+		}
+	}
+
+	for (int i = M; i <= N; i++) {
+		if (decimal[i] == 0) {
+			cout << i << "\n";
 		}
 	}
 
