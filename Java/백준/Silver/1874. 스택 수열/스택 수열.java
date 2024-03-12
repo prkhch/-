@@ -1,47 +1,45 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.StringTokenizer;
-
+import java.io.IOException;
+import java.util.Stack;
+ 
 public class Main {
-
 	public static void main(String[] args) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine());
-				
-		int num;
-		int start = 1;
-		ArrayDeque<Integer> dq = new ArrayDeque<>();
-		char[] result = new char[200002];
-		int rs_idx = 0;
+		StringBuilder sb = new StringBuilder();	// 출력할 결과물 저장
 		
-		for(int i=0; i<n; i++) {
-			num = Integer.parseInt(br.readLine());
+		Stack<Integer> stack = new Stack<>();
+		
+		int N = Integer.parseInt(br.readLine());
+		
+		int start = 0;
+		
+		// N 번 반복
+		while(N -- > 0) {
 			
-			if(num >= start) {
-				for(int j=start; j<=num; j++) {
-					dq.add(j);
-					result[rs_idx] = '+';
-					rs_idx++;
+			int value = Integer.parseInt(br.readLine());
+			
+			if(value > start) {
+				// start + 1부터 입력받은 value 까지 push를 한다.
+				for(int i = start + 1; i <= value; i++) {
+					stack.push(i);
+					sb.append('+').append('\n');	// + 를 저장한다. 
 				}
-				start = num+1;
+				start = value; 	// 다음 push 할 때의 오름차순을 유지하기 위한 변수 초기화 
 			}
 			
-			else if(!dq.isEmpty() && num != dq.peekLast()) {
-				System.out.print("NO");
-				return;
+			// top에 있는 원소가 입력받은 값과 같이 않은 경우  
+			else if(stack.peek() != value) {
+				System.out.println("NO");
+				return;		// 또는 System.exit(0); 으로 대체해도 됨. 
 			}
 			
-			dq.pollLast();
-			result[rs_idx] = '-';
-			rs_idx++;
+			stack.pop();
+			sb.append('-').append('\n');
+			
 		}
 		
-		for(int i=0; i<rs_idx; i++) {
-			System.out.println(result[i]);
-		}
-		
+		System.out.println(sb);
 	}
 }
