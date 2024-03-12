@@ -14,8 +14,7 @@ public class Main {
 		int num;
 		int start = 1;
 		ArrayDeque<Integer> dq = new ArrayDeque<>();
-		ArrayDeque<String> res = new ArrayDeque<>();
-//		char[] result = new char[200002];
+		char[] result = new char[200002];
 		int rs_idx = 0;
 		
 		for(int i=0; i<n; i++) {
@@ -24,8 +23,7 @@ public class Main {
 			if(num >= start) {
 				for(int j=start; j<=num; j++) {
 					dq.add(j);
-//					result[rs_idx] = '+';
-					res.add("+");
+					result[rs_idx] = '+';
 					rs_idx++;
 				}
 				start = num+1;
@@ -37,13 +35,12 @@ public class Main {
 			}
 			
 			dq.pollLast();
-//			result[rs_idx] = '-';
-			res.add("-");
+			result[rs_idx] = '-';
 			rs_idx++;
 		}
 		
 		for(int i=0; i<rs_idx; i++) {
-			System.out.println(res.pollFirst());
+			System.out.println(result[i]);
 		}
 		
 	}
