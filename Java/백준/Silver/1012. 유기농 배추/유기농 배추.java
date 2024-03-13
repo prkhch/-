@@ -10,18 +10,18 @@ public class Main {
 	static int[][] visited = new int[51][51];
 	static int cnt;
 	
+	static int[] dir_x = {-1,1,0,0};
+	static int[] dir_y = {0,0,-1,1};
+	
 	static void dfs(int X, int Y) {
 		if(arr[X][Y] == 0) return;
 		if(visited[X][Y] == 1) return;
 		visited[X][Y] = 1;
 		
-		int[] dir_x = {-1,1,0,0};
-		int[] dir_y = {0,0,-1,1};
-		
 		for(int i=0; i<4; i++) {
 			int move_x = dir_x[i] + X;
 			int move_y = dir_y[i] + Y;
-			if(move_x > M || move_y > N || move_x < 0 || move_y < 0) continue;
+			if(move_x >= M || move_y >= N || move_x < 0 || move_y < 0) continue;
 			dfs(move_x, move_y);
 		}
 		
