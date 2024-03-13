@@ -1,0 +1,5 @@
+SELECT MCDP_CD AS "진료과코드", COUNT(*) AS "5월예약건수" -- 쌍따옴표 확인!
+FROM APPOINTMENT
+WHERE TO_CHAR(APNT_YMD, 'YYYYMM') = '202205' -- 날짜가 2022-05
+GROUP BY MCDP_CD -- 진료과코드 기준으로 그룹화
+ORDER BY COUNT(*) ASC, MCDP_CD ASC;
