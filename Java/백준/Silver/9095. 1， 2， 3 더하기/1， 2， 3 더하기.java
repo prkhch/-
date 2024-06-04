@@ -4,33 +4,24 @@ import java.io.*;
 
 public class Main {
 	
-	static int n, answer;
-	
-	static void dfs(int now) {
-		
-		if(now == n) {
-			answer++;
-			return;
-		}
-		
-		if(now > n) return;
-		
-		for(int i=1; i<=3; i++) {
-			dfs(now+i);
-		}
-	}
-
 	public static void main(String[] args) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		int T = Integer.parseInt(br.readLine());
 		
+		int dp[] = new int[12];
+		dp[1] = 1;
+		dp[2] = 2;
+		dp[3] = 4;
+		
+		for(int i=4; i<=11; i++) {
+			dp[i] = dp[i-1] + dp[i-2] + dp[i-3];
+		}
+		
 		for(int i=0; i<T; i++) {
-			n = Integer.parseInt(br.readLine());
-			answer = 0;
-			dfs(0);
-			System.out.println(answer);
+			int n = Integer.parseInt(br.readLine());
+			System.out.println(dp[n]);
 		}
 		
 	}
