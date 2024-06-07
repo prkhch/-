@@ -90,18 +90,15 @@ public class Main {
 		System.out.println(dist[endPoint]);
 		
 		LinkedList<Integer> q = new LinkedList<>();
-		int cnt = 0;
-		Stack<Integer> stack = new Stack<>();
-		stack.push(endPoint);
-		while (prev[endPoint] != 0) {
-			cnt += 1;
-			stack.push(prev[endPoint]);
-			endPoint = prev[endPoint];
+		int pathPoint = endPoint;
+		while(true) {
+			q.add(pathPoint);
+			if(pathPoint == startPoint) break;
+			pathPoint = prev[pathPoint];
 		}
-		System.out.println(cnt + 1);
-		while (!stack.isEmpty()) {
-			System.out.print(stack.pop() + " ");
-		}
+		
+		System.out.println(q.size());
+		while(!q.isEmpty()) System.out.print(q.pollLast() + " ");
 
 		
 	}
