@@ -71,7 +71,7 @@ public class Main {
 
         int answer = 0;
         for (int i = 1; i <= N; i++) {
-            if (i == X) continue;
+            if (i == X) continue;     
             dijkstra(i);
             int result = dist[X] + distFromX[i];
             answer = Math.max(answer, result);
