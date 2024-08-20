@@ -1,7 +1,5 @@
 function solution(num_list) {
-    let answer = num_list.length >= 11 ? 0 : 1;
-    
-    num_list.length >= 11 ? num_list.forEach(v => answer += v) : num_list.forEach(v => answer *= v);
-    
-    return answer;
+   return num_list.length >= 11 ? 
+       num_list.reduce((acc, v) => acc+v, 0) :
+        num_list.reduce((acc, v) => acc*v, 1);
 }
