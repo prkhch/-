@@ -1,10 +1,8 @@
 function solution(arr, query) {
-    for(let i=0; i<query.length; i++) {
-        if(i%2 == 0) {
-            arr = arr.slice(0, query[i]+1);
-        } else {
-            arr = arr.slice(query[i]);
-        }
-    }
-    return arr;
-}
+    let start=0;
+    let end;
+    
+    query.forEach((v, i) => i%2 == 0 ? end = start + v + 1 : start = start + v)
+    
+    return arr.slice(start, end);  
+} 
