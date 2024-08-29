@@ -6,15 +6,12 @@ using namespace std;
 int solution(int n, string control) {
     int answer = n;
     
-    for(int i=0; i<control.size(); i++) {
-        if(control[i] == 'w') {
-            answer += 1;
-        } else if(control[i] == 's') {
-            answer -= 1;
-        } else if(control[i] == 'd') {
-            answer += 10;
-        } else {
-            answer -= 10;
+    for(char c : control) {
+        switch(c) {
+            case 'w' : answer += 1; break;
+            case 's' : answer -= 1; break;
+            case 'd' : answer += 10; break;
+            case 'a' : answer -= 10; break;
         }
     }
     
