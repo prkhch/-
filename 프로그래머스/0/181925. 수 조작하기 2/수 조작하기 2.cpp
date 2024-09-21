@@ -16,7 +16,7 @@ string solution(vector<int> numLog) {
     answer.reserve(size-1);
     
     int gap;
-    for(int i=1; i<numLog.size(); i++) {
+    for(int i=1; i<size; i++) {
         gap = numLog[i] - numLog[i-1];
         answer += (search(gap));
     }
