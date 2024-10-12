@@ -8,16 +8,10 @@ int solution(int n) {
     int now = 1;
     int i = 1;
     
-    while(now < n) {
+    while(now * i <= n) {
         now*=i;
         i++;
-        if(now == n) {
-            i-=1;
-        }
-        if(now > n) {
-            i-=2;
-        }
     }
 
-    return i;
+    return i-1;
 }
