@@ -1,19 +1,22 @@
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
 vector<int> solution(vector<int> emergency) {
-    vector<int> answer;
+    vector<int> sorted = emergency;
+    sort(sorted.begin(), sorted.end(), greater<>());
     
-    for(int n : emergency) {
-        int pos = 1;
-        for(int j=0; j<emergency.size(); j++ ) {
-            if(n < emergency[j]) {
-                pos+=1;
-            }
-        }
-        answer.push_back(pos);
+    unordered_map<int, int> rank;
+    for(int i=0; i<sorted.size(); i++) {
+        rank[sorted[i]] = i+1;
+    }
+    
+    vector<int> answer;
+    for(int i : emergency) {
+        answer.push_back(rank[i]);
     }
     
     return answer;
