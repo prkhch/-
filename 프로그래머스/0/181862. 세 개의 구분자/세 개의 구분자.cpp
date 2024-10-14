@@ -11,8 +11,8 @@ vector<string> solution(string myStr) {
         if(c == 'a' || c == 'b' || c == 'c') {
             if(tmp != "") {
                 answer.push_back(tmp);
+                tmp = "";
             }
-            tmp = "";
         } else {
             tmp += c;
         }
