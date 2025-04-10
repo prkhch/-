@@ -1,36 +1,28 @@
-#include <iostream>
-#include <map>
-#include <vector>
-#include <string>
-#include <algorithm>
+#include <bits/stdc++.h>
+
 using namespace std;
 
-int n, m;
-map<int, string> num_dict;
-map<string, int> name_dict;
-vector<string> v;
-string str;
-string req; // 요청
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
 
-int main() {
-	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	cin >> n >> m;
+    int N, M;
+    cin >> N >> M;
 
-	for (int i = 1; i <= n; i++) {
-		cin >> str;
-		num_dict[i] = str;
-		name_dict[str] = i;
-	}
+    map<string, string> mp;
+    for(int i=0; i<N; i++) {
+        string str;
+        cin >> str;
+        mp[str] = to_string(i+1);
+        mp[to_string(i+1)] = str;
+    }
 
-	for (int i = 0; i < m; i++) {
-		cin >> req;
-		if (req[0] < 'A') { // 숫자면
-			int numreq = stoi(req);
-			cout << num_dict[numreq] << "\n";
-		}
-		else {
-			cout << name_dict[req] << "\n";
-		}
-	}
-	
+    for(int i=0; i<M; i++) {
+        string a;
+        cin >> a;
+        cout << mp[a] << "\n";
+    }
+
 }
