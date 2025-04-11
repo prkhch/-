@@ -1,34 +1,35 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <string>
-#include <stack>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int main() {
-    
-    int n, answer = 0;
-    string str;
-    
-    cin >> n;
-    for(int i=0; i<n; i++) {    
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
 
-        cin >> str;
+    int N;
+    cin >> N;
+
+    int answer = 0;
+    for(int i=0; i<N; i++) {
         stack<char> stk;
-        for(int j=0; j<str.size(); j++) {
-            if(stk.size() && stk.top() == str[j]) {
+        string str;
+        cin >> str;
+
+        for(char c : str) {
+            if(!stk.empty() && stk.top() == c) {
                 stk.pop();
             } else {
-                stk.push(str[j]);
+                stk.push(c);
             }
         }
-        
+
         if(stk.empty()) {
             answer++;
         }
     }
     
-    cout << answer;
-    return 0;
+    cout << answer;   
+
 }
