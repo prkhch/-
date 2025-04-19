@@ -30,29 +30,22 @@ int main()
         if(team == 1) scr_one++; // 1팀 득점
         else scr_two++; // 2팀 득점
 
-        if(scr_one > scr_two) {
-            if(pre_win == 1) {
-                sec_one += s - pre_sec; // 계속 리드 중
+        if(scr_one > scr_two) { // 1팀이 이기는중
+            if(pre_win == 1) sec_one += s - pre_sec; // 이기고 있던 시간 추가
+            pre_win = 1; // 이전 승리팀 1
+        } else if(scr_one < scr_two) {
+            if(pre_win == 2) sec_two += s - pre_sec; // 이기고 있던 시간 추가
+            pre_win = 2; // 이전 승리팀 2
+        } else { // 동점중
+            if(pre_win == 1) { // 1팀이 이기고 있었음
+                sec_one += s - pre_sec; // 이기고 있던 시간 추가
+            } else { // 2팀이 이기고 있었음
+                sec_two += s - pre_sec; // 이기고 있던 시간 추가
             }
-            pre_win = 1;
-            pre_sec = s; // 리드 시작 또는 유지된 순간
+            pre_win = 0;
         }
-        else if(scr_one < scr_two) {
-            if(pre_win == 2) {
-                sec_two += s - pre_sec; // 계속 리드 중
-            }
-            pre_win = 2;
-            pre_sec = s; // 리드 시작 또는 유지된 순간
-        }
-        else { // 동점 상태
-            if(pre_win == 1) {
-                sec_one += s - pre_sec;
-            }
-            else if(pre_win == 2) {
-                sec_two += s - pre_sec;
-            }
-            pre_win = 0; // 현재 동점 상태
-        }
+        pre_sec = s;
+        
 
     }
 
