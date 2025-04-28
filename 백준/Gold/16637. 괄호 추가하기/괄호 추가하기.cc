@@ -23,14 +23,13 @@ void dfs(int sum, int pos) {
     }
 
     // 앞 괄호
-    if (pos + 1 < N) {
-        dfs(cal(sum, s[pos], s[pos + 1] - '0'), pos + 2);
+    if(pos + 2 <= N) {
+        dfs(cal(sum, s[pos], s[pos+1]-'0'), pos+2);
     }
     
     // 뒷 괄호
-    if (pos + 3 < N) {
-        int bracket = cal(s[pos + 1] - '0', s[pos + 2], s[pos + 3] - '0');
-        dfs(cal(sum, s[pos], bracket), pos + 4);
+    if(pos + 4 <= N) {
+        dfs(cal(sum, s[pos], cal(s[pos+1]-'0', s[pos+2], s[pos+3]-'0')), pos+4);
     }
 
 }
