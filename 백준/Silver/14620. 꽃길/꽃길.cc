@@ -18,22 +18,22 @@ bool check(int y, int x) {
 
 }
 
-int sm() {
-	int sm = 0;
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < N; j++) {
-			if (visited[i][j] == 1)
-				sm += arr[i][j];
-		}
-	}
+//int sm() {
+//	int sm = 0;
+//	for (int i = 0; i < N; i++) {
+//		for (int j = 0; j < N; j++) {
+//			if (visited[i][j] == 1)
+//				sm += arr[i][j];
+//		}
+//	}
+//
+//	return sm;
+//}
 
-	return sm;
-}
-
-void dfs(int cnt) {
+void dfs(int cnt, int cost) {
 
 	if (cnt > 2) {
-		mn = min(sm(), mn);
+		mn = min(cost, mn);
 		return;
 	}
 
@@ -44,12 +44,14 @@ void dfs(int cnt) {
 				int ny = i + dy[k];
 				int nx = j + dx[k];
 				visited[ny][nx] = 1;
+				cost += arr[ny][nx];
 			}
-			dfs(cnt + 1);
+			dfs(cnt + 1, cost);
 			for (int k = 0; k < 5; k++) {
 				int ny = i + dy[k];
 				int nx = j + dx[k];
 				visited[ny][nx] = 0;
+				cost -= arr[ny][nx];
 			}
 		}
 	}
@@ -67,7 +69,7 @@ int main() {
 		}
 	}
 
-	dfs(0);
+	dfs(0, 0);
 	
 	cout << mn;
 
