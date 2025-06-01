@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+#define maxn 200005
+typedef long long ll;
+using namespace std;
+const int INF = 987654321;
+const int dy[] = { -1, 0, 1, 0 };
+const int dx[] = { 0, 1, 0, -1 };
+int n, a[44], ret = INF;
+string s;
+//void go(int here) {
+//    if (here == n + 1) {
+//        for (int colMask = 0; colMask < (1 << n); colMask++) {
+//            int sum = 0;
+//            for (int i = 0; i < n; i++) {
+//                int cnt = 0;
+//                for (int j = 1; j <= n; j++) if (a[j] & (1 << i)) cnt++;
+//                if (colMask & (1 << i)) sum += (n - cnt);
+//                else sum += cnt;
+//            }
+//            ret = min(ret, sum);
+//        }
+//        return;
+//    }
+//    go(here + 1);
+//    a[here] = ~a[here];
+//    go(here + 1);
+//}
+//int main() {
+//    ios_base::sync_with_stdio(false);
+//    cin.tie(NULL); cout.tie(NULL);
+//    cin >> n;
+//    for (int i = 1; i <= n; i++) {
+//        cin >> s;
+//        int value = 1;
+//        for (int j = 0; j < s.size(); j++) {
+//            if (s[j] == 'T') a[i] |= value;
+//            value *= 2;
+//        }
+//    }
+//    go(1);
+//    cout << ret << "\n";
+//    return 0;
+//}
+
+int main() {
+	 ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+	cin >> n;
+	int a, b;
+	for (int i = 0; i < n; i++) {
+		cin >> a >> b;
+		cout << a + b << "\n";
+	}
+
+}
