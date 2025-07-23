@@ -16,31 +16,31 @@ class Solution {
         map.put("eight", "8");
         map.put("nine", "9");
         
-//         String tmp = "";
-//         String result = "";
+        String tmp = "";
+        String result = "";
         
-//         for(int i=0; i<s.length(); i++) {
-//             if('0' <= s.charAt(i) && s.charAt(i) <= '9') {
-//                 result += s.charAt(i);
-//                 continue;
-//             }
-//             else {
-//                 tmp += s.charAt(i);
-//                 if(map.getOrDefault(tmp, "").equals("")) {
-//                     continue;
-//                 }
-//                 else {
-//                     result += map.get(tmp);
-//                     tmp = "";
-//                 }
-//             }
-//         }
-        
-        for(String key : map.keySet()) {
-            s = s.replaceAll(key, map.get(key));
+        for(int i=0; i<s.length(); i++) {
+            if('0' <= s.charAt(i) && s.charAt(i) <= '9') {
+                result += s.charAt(i);
+                continue;
+            }
+            else {
+                tmp += s.charAt(i);
+                if(map.getOrDefault(tmp, "").equals("")) {
+                    continue;
+                }
+                else {
+                    result += map.get(tmp);
+                    tmp = "";
+                }
+            }
         }
         
-
-        return Integer.parseInt(s);
+        return Integer.parseInt(result);
     }
 }
+
+
+        // for(String key : map.keySet()) {
+        //     s = s.replaceAll(key, map.get(key));
+        // }
