@@ -1,30 +1,25 @@
 // https://pixx.tistory.com/85
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs.readFileSync(filePath).toString().split("\n");
+let input = fs
+  .readFileSync(filePath)
+  .toString()
+  .split("\n")
+  .map((v) => v.split(" ").map(Number));
 
-const used = Array(9).fill(false);
-const result = [];
+let [A, B, C] = input.shift();
 
-function search(st, count, sum) {
-  if (count === 7) {
-    if (sum === 100) {
-      result.sort((a, b) => a - b);
-      for (const x of result) {
-        console.log(x);
-      }
-      process.exit(0);
-    }
-    return;
-  }
-  for (let i = st; i < 9; i++) {
-    if (used[i]) continue;
-    used[i] = true;
-    result.push(input[i]);
-    search(i + 1, count + 1, sum + Number(input[i]));
-    used[i] = false;
-    result.pop();
+let arr = Array(101).fill(0);
+
+for (const i of input) {
+  for (let j = i[0]; j < i[1]; j++) {
+    arr[j]++;
   }
 }
 
-search(0, 0, 0);
+let result = 0;
+for (const i of arr) {
+  result += i === 1 ? A : i === 2 ? 2 * B : i === 3 ? 3 * C : 0;
+}
+
+console.log(result);
