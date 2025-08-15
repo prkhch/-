@@ -1,14 +1,24 @@
-// 4
+// 6
 // https://pixx.tistory.com/85
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs.readFileSync(filePath).toString().trim();
+let input = fs.readFileSync(filePath).toString().split("\n");
 
-for (let i = 0; i < input.length / 2; i++) {
-  if (input.charAt(i) !== input.charAt(input.length - i - 1)) {
-    console.log(0);
-    process.exit(0);
+let answer = "";
+for (let i = 0; i < input[0].length; i++) answer += solution(input[0][i]);
+
+console.log(answer);
+
+function solution(char) {
+  if (97 <= char.charCodeAt(0) && char.charCodeAt(0) <= 97 + 25) {
+    if (char.charCodeAt(0) + 13 > 97 + 25)
+      return String.fromCharCode(char.charCodeAt(0) + 13 - 26);
+    else return String.fromCharCode(char.charCodeAt(0) + 13);
+  } else if (65 <= char.charCodeAt(0) && char.charCodeAt(0) <= 65 + 25) {
+    if (char.charCodeAt(0) + 13 > 65 + 25)
+      return String.fromCharCode(char.charCodeAt(0) + 13 - 26);
+    else return String.fromCharCode(char.charCodeAt(0) + 13);
+  } else {
+    return char;
   }
 }
-
-console.log(1);
